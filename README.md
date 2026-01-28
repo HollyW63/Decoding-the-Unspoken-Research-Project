@@ -1,36 +1,35 @@
 # Decoding the Unspoken: Multimodal Emotion Recognition
 
-This project combines **real-time facial emotion detection** using [DeepFace](https://github.com/serengil/deepface) with **tone-of-voice analysis** using a pretrained [Wav2Vec2 model](https://huggingface.co/superb/wav2vec2-large-superb-er) from Hugging Face.
+A real-time system combining facial expression analysis (using [DeepFace](https://github.com/serengil/deepface)) and vocal tone analysis (using [Wav2Vec2](https://huggingface.co/superb/wav2vec2-large-superb-er)).
 
-> **Project Context:** This system analyzes the incongruence between facial expressions and vocal tones to help research social confidence in introverts. It captures data from a webcam and microphone, overlays live predictions, and automatically logs session data for statistical analysis.
+> **Project Context:** Engineering codebase for **GSDSEF 2026**. Analyzes face-voice incongruence to study social confidence in introverts.
 
 ---
 
 ## Features
 
 ### Core Prototype
-- Real-time **face detection and emotion classification** (7 emotions)
-- Real-time **voice tone analysis** (Positive/Neutral/Negative)
-- Multithreaded microphone processing (no lag!)
-- Combined overlay on live webcam stream
-- Uses fully **pretrained** models — no training required
+* **Real-time Detection:** Detects 7 facial emotions and vocal sentiment simultaneously.
+* **No Video Lag:** Uses multithreading to process audio in the background, keeping the video smooth.
+* **Live Overlay:** Shows the AI's predictions and confidence scores right on the webcam feed.
+* **Pretrained Models:** Uses powerful open-source models (DeepFace & Wav2Vec2) without needing retraining.
 
-### Science Fair Additions (New)
-- [cite_start]**Automated Data Logging:** Automatically generates timestamped `.csv` files for every session[cite: 48].
-- [cite_start]**Privacy Protocol:** Assigns random Participant IDs to strictly protect user anonymity[cite: 48].
-- **Sentiment Mapping:** Implements logic to map disparate emotion labels into broad **Positive vs. Negative** categories for robust correlation.
-- **Analysis Notebooks:** Includes Jupyter Notebooks for generating Confusion Matrices and Linear Regression visualizations.
+### My Science Fair Contributions
+* **Automated Data Logging:** Scripts to automatically save every session into timestamped `.csv` files.
+* **Privacy Protocol:** A system that assigns random Participant IDs (e.g., `P01`) to strictly protect anonymity.
+* **Sentiment Mapping:** Logic to group different emotion labels into **Positive vs. Negative** for accurate statistical comparison.
+* **Data Analysis Tools:** Custom Jupyter Notebooks to generate Confusion Matrices and Linear Regression charts from the raw data.
 
 ---
 
 ## Technologies Used
 
-- `DeepFace` – facial expression detection
-- `Wav2Vec2` from Hugging Face – tone/emotion from audio
-- `PyAudio` – live microphone input
-- `OpenCV` – camera display and UI overlay
-- `Pandas` – data logging and CSV manipulation
-- `Threading` – for parallel audio processing
+* `Python 3.9` - Primary Language
+* `DeepFace` - Computer Vision
+* `Wav2Vec2` - Audio Processing/Transformers
+* `PyAudio` - Real-time Microphone Input
+* `OpenCV` - Video Display & UI Overlay
+* `Pandas` - Data Logging & Analysis
 
 ---
 
@@ -51,12 +50,15 @@ pip install opencv-python deepface pyaudio numpy soundfile torch transformers pa
 
 ```
 
-If `pyaudio` fails on macOS (Apple Silicon), install portaudio first:
+**⚠️ Note for macOS Users (Apple Silicon):**
+If `pyaudio` fails to install, you must install `portaudio` first using Homebrew:
 
-```brew install portaudio
+```bash
+brew install portaudio
 export LDFLAGS="-L/opt/homebrew/lib"
 export CPPFLAGS="-I/opt/homebrew/include"
 pip install pyaudio
+
 ```
 
 ---
@@ -65,25 +67,25 @@ pip install pyaudio
 
 ### 1. Start the Real-time Detector
 
-Run the main script to start the webcam feed and data logging:
+Run the main script to start the webcam feed and begin data logging:
 
 ```bash
 python multimodal.py
 
 ```
 
-**You will see:**
+**System Output:**
 
-* Bounding boxes around detected faces
-* Facial emotion label with confidence %
-* Voice tone label with confidence % in the top-left corner
-* *A CSV file will be automatically created in the folder.*
+* Bounding boxes around detected faces.
+* Facial emotion labels with confidence percentages.
+* Vocal tone labels displayed in the top-left corner.
+* *A new CSV file will be automatically generated in the project folder.*
 
-Press `ESC` to quit.
+Press `ESC` to quit the session.
 
 ### 2. Run the Data Analysis
 
-To generate charts (Confusion Matrix, Regression Lines) from your collected CSV files:
+To generate the charts (Confusion Matrix, Regression Lines) for the project board:
 
 1. Open VS Code.
 2. Open `emotion_correlation_analysis.ipynb`.
@@ -93,25 +95,23 @@ To generate charts (Confusion Matrix, Regression Lines) from your collected CSV 
 
 ## Methodology Note: Emotion Mapping
 
-To ensure accurate statistical comparison between the Video (7 classes) and Audio (4 classes) models, this project uses the following sentiment mapping:
+Mapping Logic: To align the 7 class Video model with the 4-class Audio model for statistical comparison:
 
 * **Positive:** Happy, Neutral
 * **Negative:** Sad, Angry, Fear
-* **Excluded:** Surprise, Disgust (due to low audio detection reliability)
+* **Excluded:** Surprise, Disgust (Excluded from correlation analysis due to lower reliability in audio detection models).
 
 ---
 
 ## References
 
-[DeepFace Github](https://github.com/serengil/deepface)
-
-[Hugging Face Model - superb/wav2vec2-large-superb-er](https://huggingface.co/superb/wav2vec2-large-superb-er)
-
-[PyAudio Doc](https://people.csail.mit.edu/hubert/pyaudio/)
+* [DeepFace Github](https://github.com/serengil/deepface)
+* [Hugging Face Model - superb/wav2vec2-large-superb-er](https://huggingface.co/superb/wav2vec2-large-superb-er)
+* [PyAudio Documentation](https://people.csail.mit.edu/hubert/pyaudio/)
 
 ---
 
-## Credit
+## Credits
 
 **Current Project Maintainer (GSDSEF Science Fair 2026):**
 
