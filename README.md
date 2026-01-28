@@ -3,7 +3,10 @@
 A real-time system combining facial expression analysis (using [DeepFace](https://github.com/serengil/deepface)) and vocal tone analysis (using [Wav2Vec2](https://huggingface.co/superb/wav2vec2-large-superb-er)).
 
 > **Project Context:** Engineering codebase for **GSDSEF 2026**. Analyzes face-voice incongruence to study social confidence in introverts.
-![System Demo](demo_preview.png)
+<div align="center">
+  <img src="demo_preview.png" alt="System Demo" width="600">
+</div>
+
 ---
 
 ## Features
